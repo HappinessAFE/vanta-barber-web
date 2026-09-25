@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>VANTA BARBER Co. — Berea</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#161513; --charcoal:#211f1c; --charcoal-2:#2a2723;
+  --parchment:#efe7da; --parchment-dim:#c9bfae;
+  --ember:#b8451f; --ember-light:#d9683c;
+  --brass:#a9813f;
+  --line: rgba(239,231,218,0.14);
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+@media (prefers-color-scheme: light){ :root:not([data-theme="dark"]){ } }
+*{box-sizing:border-box;}
+html{scroll-padding-top:70px;}
+html,body{height:auto;margin:0;background:var(--ink);color:var(--parchment);}
+body{font-family:'Inter',sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased;}
+h1,h2,h3,.display{font-family:'Fraunces',serif;font-weight:600;letter-spacing:-0.01em;color:var(--parchment);margin:0;}
+a{color:inherit;text-decoration:none;}
+img{max-width:100%;}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px;}
+button{font-family:inherit;cursor:pointer;}
+:focus-visible{outline:2px solid var(--ember-light);outline-offset:2px;}
+
+/* HEADER */
+header{position:sticky;top:0;z-index:40;background:rgba(22,21,19,0.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top,0px);}
+.hdr{display:flex;align-items:center;justify-content:space-between;padding:14px 24px;max-width:1080px;margin:0 auto;}
+.brand{display:flex;align-items:center;gap:10px;}
+.brand svg {flex-shrink: 0;}
+.brand-name{font-family:'Fraunces',serif;font-size:1.2rem;font-weight:600;}
+.brand-name span {color: var(--brass);}
+nav.main-nav{display:flex;gap:28px;align-items:center;}
+nav.main-nav a{font-size:0.94rem;color:var(--parchment-dim);transition:color .15s;}
+nav.main-nav a:hover,nav.main-nav a.active{color:var(--parchment);}
+.book-btn{background:var(--ember);color:#fff !important;padding:9px 18px;border-radius:2px;font-weight:600;font-size:0.9rem;border:1px solid var(--ember);transition:background .15s;}
+.book-btn:hover{background:var(--ember-light);}
+.hamb{display:none;background:none;border:none;color:var(--parchment);width:36px;height:36px;}
+.mobile-nav{display:none;flex-direction:column;gap:0;border-top:1px solid var(--line);background:var(--charcoal);}
+.mobile-nav a{padding:14px 24px;border-bottom:1px solid var(--line);color:var(--parchment-dim);}
+.mobile-nav.open{display:flex;}
+@media(max-width:820px){
+  nav.main-nav{display:none;}
+  .hamb{display:block;}
+}
+
+/* PAGES */
+.page{display:none;animation:fade .35s ease;}
+.page.active{display:block;}
+@keyframes fade{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
+
+/* HERO */
+.hero{position:relative;padding:90px 24px 80px;border-bottom:1px solid var(--line);overflow:hidden;}
+.hero::before{content:"";position:absolute;inset:0;background:
+  radial-gradient(ellipse 700px 400px at 85% -10%, rgba(184,69,31,0.25), transparent 60%),
+  radial-gradient(ellipse 500px 400px at 0% 100%, rgba(169,129,63,0.14), transparent 60%);
+  pointer-events:none;}
+.hero-in{max-width:1080px;margin:0 auto;position:relative;display:grid;grid-template-columns:1.3fr 1fr;gap:50px;align-items:center;}
+@media(max-width:820px){.hero-in{grid-template-columns:1fr;}}
+.eyebrow-line{display:flex;align-items:center;gap:10px;color:var(--brass);font-size:0.82rem;margin-bottom:18px;}
+.eyebrow-line .rule{width:28px;height:1px;background:var(--brass);}
+.hero h1{font-size:clamp(2.3rem,5vw,3.6rem);line-height:1.05;max-width:12ch;}
+.hero p.lede{color:var(--parchment-dim);max-width:44ch;margin-top:20px;font-size:1.08rem;}
+.hero-ctas{display:flex;gap:14px;margin-top:32px;flex-wrap:wrap;}
+.btn-outline{border:1px solid var(--line);padding:12px 22px;border-radius:2px;color:var(--parchment);font-size:0.94rem;}
+.btn-outline:hover{border-color:var(--brass);}
+.btn-solid{background:var(--ember);padding:12px 24px;border-radius:2px;color:#fff;font-weight:600;font-size:0.94rem;}
+.btn-solid:hover{background:var(--ember-light);}
+.hero-art{display:flex;justify-content:center;}
+.hero-art svg{width:100%;max-width:340px;height:auto;}
+
+/* Quick strip */
+.strip{border-bottom:1px solid var(--line);}
+.strip .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:18px;padding:28px 24px;color:var(--parchment-dim);font-size:0.9rem;}
+.strip b{color:var(--parchment);}
+
+/* SECTION generic */
+section.block{padding:76px 0;border-bottom:1px solid var(--line);}
+.sec-head{margin-bottom:44px;max-width:56ch;}
+.sec-head .eyebrow-line{margin-bottom:14px;}
+.sec-head h2{font-size:clamp(1.8rem,3.4vw,2.4rem);}
+.sec-head p{color:var(--parchment-dim);margin-top:14px;}
+
+/* SERVICES */
+.menu-list{border-top:1px solid var(--line);}
+.menu-row{display:flex;justify-content:space-between;gap:20px;padding:20px 0;border-bottom:1px solid var(--line);align-items:baseline;}
+.menu-row .m-name{font-family:'Fraunces',serif;font-size:1.15rem;font-weight:600;}
+.menu-row .m-desc{color:var(--parchment-dim);font-size:0.9rem;margin-top:4px;max-width:46ch;}
+.menu-row .m-meta{color:var(--brass);font-size:0.78rem;margin-top:6px;}
+.menu-row .m-price{font-family:'Fraunces',serif;font-size:1.2rem;white-space:nowrap;color:var(--ember-light);}
+.pkg-note{margin-top:28px;padding:20px;border:1px solid var(--line);background:var(--charcoal);font-size:0.92rem;color:var(--parchment-dim);}
+
+/* ABOUT */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:start;}
+@media(max-width:820px){.about-grid{grid-template-columns:1fr;}}
+.about-copy p{color:var(--parchment-dim);margin-top:16px;}
+.stat-row{display:flex;gap:36px;margin-top:28px;}
+.stat b{font-family:'Fraunces',serif;font-size:1.7rem;display:block;color:var(--ember-light);}
+.stat span{color:var(--parchment-dim);font-size:0.82rem;}
+.about-art svg{width:100%;height:auto;}
+
+.barbers{margin-top:70px;}
+.barber-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;margin-top:36px;}
+@media(max-width:760px){.barber-grid{grid-template-columns:1fr;}}
+.barber-card{border:1px solid var(--line);padding:26px;background:var(--charcoal);}
+.avatar{width:64px;height:64px;border-radius:50%;background:linear-gradient(145deg,var(--ember),var(--brass));display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-weight:600;font-size:1.3rem;color:#161513;margin-bottom:16px;}
+.barber-card h3{font-size:1.1rem;}
+.barber-card .role{color:var(--brass);font-size:0.8rem;margin-top:2px;}
+.barber-card p{color:var(--parchment-dim);font-size:0.9rem;margin-top:12px;}
+
+/* BOOKING */
+.book-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:56px;align-items:start;}
+@media(max-width:900px){.book-grid{grid-template-columns:1fr;}}
+.info-card{border:1px solid var(--line);padding:26px;background:var(--charcoal);}
+.info-card h3{font-size:1.05rem;margin-bottom:14px;}
+.info-row{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--line);font-size:0.9rem;color:var(--parchment-dim);}
+.info-row b{color:var(--parchment);}
+form#bookingForm{display:flex;flex-direction:column;gap:16px;}
+.f-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+@media(max-width:520px){.f-row{grid-template-columns:1fr;}}
+label{font-size:0.82rem;color:var(--parchment-dim);display:block;margin-bottom:6px;}
+input,select,textarea{width:100%;background:var(--charcoal-2);border:1px solid var(--line);color:var(--parchment);padding:11px 12px;border-radius:2px;font-family:inherit;font-size:0.94rem;}
+input:focus,select:focus,textarea:focus{border-color:var(--brass);}
+textarea{resize:vertical;min-height:70px;}
+.err{color:var(--ember-light);font-size:0.78rem;min-height:1em;margin-top:4px;}
+.submit-btn{background:var(--ember);color:#fff;padding:14px;border:none;border-radius:2px;font-weight:600;font-size:0.98rem;margin-top:6px;}
+.submit-btn:hover{background:var(--ember-light);}
+
+#confirmPanel{display:none;border:1px solid var(--brass);background:var(--charcoal);padding:28px;margin-top:26px;}
+#confirmPanel h3{color:var(--ember-light);font-size:1.15rem;}
+#confirmPanel .conf-row{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--line);font-size:0.9rem;}
+.cal-btns{display:flex;gap:12px;margin-top:20px;flex-wrap:wrap;}
+.cal-btn{border:1px solid var(--line);padding:11px 18px;border-radius:2px;font-size:0.88rem;display:inline-flex;align-items:center;gap:8px;}
+.cal-btn:hover{border-color:var(--brass);}
+
+/* TERMS */
+.terms-body h3{font-size:1.05rem;margin-top:26px;color:var(--brass);}
+.terms-body p, .terms-body li{color:var(--parchment-dim);font-size:0.93rem;margin-top:8px;}
+.terms-body{max-width:70ch;}
+
+/* FOOTER */
+footer{padding:56px 0 30px;}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:36px;}
+@media(max-width:760px){.foot-grid{grid-template-columns:1fr 1fr;}}
+.foot-grid h4{font-size:0.82rem;color:var(--brass);margin-bottom:14px;letter-spacing:0.03em;}
+.foot-grid a,.foot-grid p{display:block;color:var(--parchment-dim);font-size:0.88rem;margin-bottom:9px;}
+.foot-grid a:hover{color:var(--parchment);}
+.foot-bottom{border-top:1px solid var(--line);margin-top:44px;padding-top:22px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:0.8rem;color:var(--parchment-dim);}
+.social-row{display:flex;gap:12px;}
+.social-row a{width:32px;height:32px;border:1px solid var(--line);border-radius:50%;display:flex;align-items:center;justify-content:center;}
+
+/* POPUP */
+.overlay{position:fixed;inset:0;background:rgba(10,9,8,0.72);display:none;align-items:center;justify-content:center;z-index:100;padding:20px;}
+.overlay.open{display:flex;}
+.modal{background:var(--charcoal);border:1px solid var(--brass);max-width:400px;width:100%;padding:32px;position:relative;}
+.modal-close{position:absolute;top:14px;right:14px;background:none;border:none;color:var(--parchment-dim);font-size:1.3rem;width:30px;height:30px;}
+.modal h3{font-size:1.3rem;color:var(--ember-light);margin-bottom:10px;}
+.modal p{color:var(--parchment-dim);font-size:0.92rem;margin-bottom:20px;}
+.promo-code{border:1px dashed var(--brass);padding:10px;text-align:center;font-family:'Fraunces',serif;letter-spacing:0.08em;color:var(--brass);margin-bottom:18px;}
+
+.hidden{display:none !important;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="hdr">
+    <a href="#" class="brand" data-nav="home" aria-label="Vanta Barber Co. — home">
+      <svg viewBox="0 0 200 140" width="72" height="50">
+        <rect x="6" y="6" width="188" height="128" rx="8" fill="#efe7da" stroke="#a9813f" stroke-width="1.5"/>
+        <polygon points="80,24 94,24 100,72" fill="#211f1c"/>
+        <polygon points="106,24 120,24 100,72" fill="#211f1c"/>
+        <line x1="106" y1="24" x2="100" y2="72" stroke="#a9813f" stroke-width="1.6"/>
+        <circle cx="113" cy="29.5" r="2.6" fill="#a9813f"/>
+        <text x="100" y="98" text-anchor="middle" font-family="Fraunces, serif" font-weight="700" font-size="22" letter-spacing="2" fill="#211f1c">VANTA</text>
+        <text x="100" y="116" text-anchor="middle" font-family="Inter, sans-serif" font-weight="600" font-size="10" letter-spacing="3" fill="#a9813f">BARBER CO.</text>
+      </svg>
+    </a>
+    <nav class="main-nav" aria-label="Primary">
+      <a href="#" data-nav="home">Home</a>
+      <a href="#" data-nav="services">Services</a>
+      <a href="#" data-nav="about">About</a>
+      <a href="#" data-nav="book">Contact</a>
+      <a href="#" data-nav="book" class="book-btn">Book Now</a>
+    </nav>
+    <button class="hamb" id="hambBtn" aria-label="Open menu" aria-expanded="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+  </div>
+  <div class="mobile-nav" id="mobileNav">
+    <a href="#" data-nav="home">Home</a>
+    <a href="#" data-nav="services">Services</a>
+    <a href="#" data-nav="about">About</a>
+    <a href="#" data-nav="book">Book Now</a>
+  </div>
+</header>
+
+<main>
+
+<!-- HOME -->
+<section class="page active" id="page-home">
+  <div class="hero">
+      <div class="hero-in">
+          <div>
+              <div class="eyebrow-line"><span class="rule"></span> Berea's neighbourhood barbershop</div>
+              <h1>Sharp cuts, no rush, no guesswork.</h1>
+              <p class="lede">Vanta Barber Co. has been pairing old-school straight-razor craft with modern fades since 2016. Walk out looking like you meant to.</p>
+              <div class="hero-ctas">
+                  <a href="#" class="btn-solid" data-nav="book">Book an appointment</a>
+                  <a href="#" class="btn-outline" data-nav="services">See services & prices</a>
+              </div>
+          </div>
+          <div class="hero-art">
+              <svg viewBox="0 0 200 140" width="280" height="196">
+                  <rect x="6" y="6" width="188" height="128" rx="8" fill="#efe7da" stroke="#a9813f" stroke-width="1.5"/>
+                  <polygon points="80,24 94,24 100,72" fill="#211f1c"/>
+                  <polygon points="106,24 120,24 100,72" fill="#211f1c"/>
+                  <line x1="106" y1="24" x2="100" y2="72" stroke="#a9813f" stroke-width="1.6"/>
+                  <circle cx="113" cy="29.5" r="2.6" fill="#a9813f"/>
+                  <text x="100" y="98" text-anchor="middle" font-family="Fraunces, serif" font-weight="700" font-size="22" letter-spacing="2" fill="#211f1c">VANTA</text>
+                  <text x="100" y="116" text-anchor="middle" font-family="Inter, sans-serif" font-weight="600" font-size="10" letter-spacing="3" fill="#a9813f">BARBER CO.</text>
+              </svg>
+          </div>
+      </div>
+  </div>
+  <div class="strip">
+    <div class="wrap">
+      <div><b>Mon–Fri</b> 9am–7pm · <b>Sat</b> 9am–5pm · Closed Sunday</div>
+      <div><b>214 Clark Grove</b>, Berea</div>
+      <div><b>(+27) 72 468 1012</b></div>
+    </div>
+  </div>
+
+  <section class="block">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="eyebrow-line"><span class="rule"></span> What we do</div>
+        <h2>Four things, done properly</h2>
+        <p>We keep the menu tight so every barber stays sharp at what's on it.</p>
+      </div>
+      <div class="menu-list" style="max-width:720px;">
+        <div class="menu-row"><div><div class="m-name">Skin Fade</div><div class="m-desc">Precision fade, tapered to bare skin.</div></div><div class="m-price">R110</div></div>
+        <div class="menu-row"><div><div class="m-name">Classic Haircut</div><div class="m-desc">Scissor-over-comb, styled to finish.</div></div><div class="m-price">R100</div></div>
+        <div class="menu-row"><div><div class="m-name">Hot Towel Shave</div><div class="m-desc">Straight razor, hot towel, balm.</div></div><div class="m-price">R60</div></div>
+        <div class="menu-row"><div><div class="m-name">The Full Forge</div><div class="m-desc">Cut, beard sculpt, hot towel shave.</div></div><div class="m-price">R200</div></div>
+      </div>
+      <a href="#" data-nav="services" class="btn-outline" style="display:inline-block;margin-top:30px;">View full menu</a>
+    </div>
+  </section>
+</section>
+
+<!-- SERVICES -->
+<section class="page" id="page-services">
+  <section class="block" style="padding-top:60px;">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="eyebrow-line"><span class="rule"></span> Services & pricing</div>
+        <h2>The full menu</h2>
+        <p>Every price includes a consultation, a proper wash, and a finish you can walk straight into a meeting with.</p>
+      </div>
+      <div class="menu-list">
+        <div class="menu-row"><div><div class="m-name">Classic Haircut</div><div class="m-desc">Scissor and clipper work, tailored to your hair type.</div><div class="m-meta">45 min</div></div><div class="m-price">R100</div></div>
+        <div class="menu-row"><div><div class="m-name">Skin Fade</div><div class="m-desc">High, mid, or low fade, tapered to bare skin.</div><div class="m-meta">45 min</div></div><div class="m-price">R110</div></div>
+        <div class="menu-row"><div><div class="m-name">Beard Trim & Line-up</div><div class="m-desc">Shape, trim, and razor line-up with balm finish.</div><div class="m-meta">20 min</div></div><div class="m-price">R50</div></div>
+        <div class="menu-row"><div><div class="m-name">Haircut + Beard Combo</div><div class="m-desc">Any haircut paired with a full beard service.</div><div class="m-meta">60 min</div></div><div class="m-price">R120</div></div>
+        <div class="menu-row"><div><div class="m-name">Hot Towel Shave</div><div class="m-desc">Traditional straight-razor shave, hot towel prep.</div><div class="m-meta">30 min</div></div><div class="m-price">R60</div></div>
+        <div class="menu-row"><div><div class="m-name">Kids Cut (12 & under)</div><div class="m-desc">Patient, quick, and painless — cartoons on request.</div><div class="m-meta">30 min</div></div><div class="m-price">R50</div></div>
+        <div class="menu-row"><div><div class="m-name">The Full Forge</div><div class="m-desc">Our signature: cut, beard sculpt, and hot towel shave.</div><div class="m-meta">75 min</div></div><div class="m-price">R200</div></div>
+      </div>
+      <div class="pkg-note">First visit? Ask your barber about the welcome offer — new clients save 15% on any service booked through this site.</div>
+      <a href="#" data-nav="book" class="btn-solid" style="display:inline-block;margin-top:30px;">Book one of these</a>
+    </div>
+  </section>
+</section>
+
+<!-- ABOUT -->
+<section class="page" id="page-about">
+  <section class="block" style="padding-top:60px;">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="eyebrow-line"><span class="rule"></span> Our story</div>
+        <h2>Built on a street that still has a forge on it</h2>
+      </div>
+      <div class="about-grid">
+        <div class="about-copy">
+          <p>Vanta opened in 2016 in a converted metalworks in Durban, on the street where the neighbourhood's last working forge shut down the year before. We named the shop after the deepest black we could find for the sign — a nod to a trade that still gets its hands dirty. We wanted a shop that felt like that trade: deliberate, unhurried, and a little bit stubborn about doing things properly.</p>
+          <p>No chain-shop shortcuts. Every chair is run by a barber who trained for years before touching a paying client, and every cut starts with an actual conversation about what you want.</p>
+          <div class="stat-row">
+            <div class="stat"><b>9 yrs</b><span>on Clark Grove</span></div>
+            <div class="stat"><b>3</b><span>barbers, 3 chairs</span></div>
+            <div class="stat"><b>4.9</b><span>average rating</span></div>
+          </div>
+        </div>
+        <div class="about-art">
+          <svg viewBox="0 0 340 260" fill="none">
+            <rect x="10" y="10" width="320" height="240" fill="#2a2723" stroke="#3a352f"/>
+            <rect x="40" y="150" width="60" height="90" fill="#211f1c"/>
+            <rect x="140" y="110" width="60" height="130" fill="#211f1c"/>
+            <rect x="240" y="70" width="60" height="170" fill="#211f1c"/>
+            <circle cx="70" cy="130" r="14" fill="#b8451f"/>
+            <circle cx="170" cy="90" r="14" fill="#a9813f"/>
+            <circle cx="270" cy="50" r="14" fill="#d9683c"/>
+            <path d="M40 240 H300" stroke="#a9813f" stroke-width="1.5" opacity="0.6"/>
+          </svg>
+        </div>
+      </div>
+
+      <div class="barbers">
+        <div class="sec-head" style="margin-bottom:0;">
+          <div class="eyebrow-line"><span class="rule"></span> Your barbers</div>
+          <h2>Three chairs, three specialties</h2>
+        </div>
+        <div class="barber-grid">
+          <div class="barber-card">
+            <div class="avatar">JS</div>
+            <h3>John Smith</h3>
+            <div class="role">Owner · Master Barber</div>
+            <p>17 years behind the chair. Classic cuts, straight-razor shaves, and the final word on anything tricky.</p>
+          </div>
+          <div class="barber-card">
+            <div class="avatar">LM</div>
+            <h3>Lunga Mbiko</h3>
+            <div class="role">Fade Specialist</div>
+            <p>If you want a skin fade sharp enough to see your reflection in, Lunga's chair is the one to book.</p>
+          </div>
+          <div class="barber-card">
+            <div class="avatar">LB</div>
+            <h3>Liyema Botha</h3>
+            <div class="role">Classic Cuts & Beards</div>
+            <p>Scissor work, beard sculpting, and a steady hand for anyone who wants a low-key, no-surprises cut.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</section>
+
+<!-- BOOK / CONTACT -->
+<section class="page" id="page-book">
+  <section class="block" style="padding-top:60px;">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="eyebrow-line"><span class="rule"></span> Book an appointment</div>
+        <h2>Reserve your chair</h2>
+        <p>Pick a service, a barber, and a time. We will hold the slot and you can add it straight to your calendar.</p>
+      </div>
+
+      <div class="book-grid">
+        <div>
+          <div class="info-card">
+            <h3>Vanta Barber Co.</h3>
+            <div class="info-row"><span>Address</span><b>214 Clark Grove, Berea</b></div>
+            <div class="info-row"><span>Phone</span><b>(+27) 72 468 1012</b></div>
+            <div class="info-row"><span>Email</span><b>book@vantabarber.com</b></div>
+            <div class="info-row"><span>Mon–Fri</span><b>9:00am – 19:00</b></div>
+            <div class="info-row"><span>Saturday</span><b>9:00am – 17:00</b></div>
+            <div class="info-row" style="border-bottom:none;"><span>Sun</span><b>Closed</b></div>
+          </div>
+        </div>
+
+        <div>
+          <form id="bookingForm" novalidate>
+            <div class="f-row">
+              <div>
+                <label for="f-name">Full name</label>
+                <input id="f-name" name="name" type="text" required>
+                <div class="err" id="err-name"></div>
+              </div>
+              <div>
+                <label for="f-phone">Phone</label>
+                <input id="f-phone" name="phone" type="tel" required>
+                <div class="err" id="err-phone"></div>
+              </div>
+            </div>
+            <div>
+              <label for="f-email">Email</label>
+              <input id="f-email" name="email" type="email" required>
+              <div class="err" id="err-email"></div>
+            </div>
+            <div class="f-row">
+              <div>
+                <label for="f-service">Service</label>
+                <select id="f-service" name="service" required>
+                  <option value="">Select a service</option>
+                  <option value="Classic Haircut|R100" data-dur="45">Classic Haircut — R100 (45 min)</option>
+                  <option value="Skin Fade|R110" data-dur="45">Skin Fade — R110 (45 min)</option>
+                  <option value="Beard Trim & Line-up|R50" data-dur="20">Beard Trim & Line-up — R50 (20 min)</option>
+                  <option value="Haircut + Beard Combo|R120" data-dur="60">Haircut + Beard Combo — R120 (60 min)</option>
+                  <option value="Hot Towel Shave|R60" data-dur="30">Hot Towel Shave — R60 (30 min)</option>
+                  <option value="Kids Cut|R50" data-dur="30">Kids Cut (12 & under) — R50 (30 min)</option>
+                  <option value="The Full Forge|R200" data-dur="75">The Full Forge — R200 (75 min)</option>
+                </select>
+                <div class="err" id="err-service"></div>
+              </div>
+              <div>
+                <label for="f-barber">Barber</label>
+                <select id="f-barber" name="barber" required>
+                  <option value="">No preference</option>
+                  <option value="John Smith">John Smith — Master Barber</option>
+                  <option value="Lunga Mbiko">Lunga Mbiko — Fade Specialist</option>
+                  <option value="Liyema Botha">Liyema Botha — Classic Cuts & Beards</option>
+                </select>
+              </div>
+            </div>
+            <div class="f-row">
+              <div>
+                <label for="f-date">Date</label>
+                <input id="f-date" name="date" type="date" required>
+                <div class="err" id="err-date"></div>
+              </div>
+              <div>
+                <label for="f-time">Time</label>
+                <select id="f-time" name="time" required>
+                  <option value="">Select a time</option>
+                  <option>09:00</option><option>09:30</option><option>10:00</option><option>10:30</option>
+                  <option>11:00</option><option>11:30</option><option>13:00</option><option>13:30</option>
+                  <option>14:00</option><option>14:30</option><option>15:00</option><option>15:30</option>
+                  <option>16:00</option><option>16:30</option><option>17:00</option><option>17:30</option>
+                </select>
+                <div class="err" id="err-time"></div>
+              </div>
+            </div>
+            <div>
+              <label for="f-notes">Notes for your barber (optional)</label>
+              <textarea id="f-notes" name="notes" placeholder="Promo code, style reference, anything we should know..."></textarea>
+            </div>
+            <button type="submit" class="submit-btn">Confirm booking</button>
+          </form>
+
+          <div id="confirmPanel">
+            <h3>You're booked, <span id="conf-name"></span>.</h3>
+            <div class="conf-row"><span>Service</span><b id="conf-service"></b></div>
+            <div class="conf-row"><span>Barber</span><b id="conf-barber"></b></div>
+            <div class="conf-row"><span>Date & time</span><b id="conf-when"></b></div>
+            <div class="conf-row" style="border-bottom:none;"><span>Location</span><b>214 Clark Grove, Berea</b></div>
+            <div class="cal-btns">
+              <a href="#" id="googleCalBtn" class="cal-btn" target="_blank" rel="noopener">+ Google Calendar</a>
+              <a href="#" id="icsBtn" class="cal-btn" download="vanta-appointment.ics">+ Apple / Outlook (.ics)</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</section>
+
+<!-- TERMS -->
+<section class="page" id="page-terms">
+  <section class="block" style="padding-top:60px;">
+    <div class="wrap terms-body">
+      <div class="eyebrow-line"><span class="rule"></span> Legal</div>
+      <h2>Terms & Conditions</h2>
+      <p>These terms apply to all bookings made with Vanta Barber Co. ("we", "us") through this website. By booking an appointment, you agree to the terms below.</p>
+      <h3>Bookings</h3>
+      <p>Appointments booked through this site are held for you at the selected time. Please arrive 5 minutes early; arrivals more than 15 minutes late may need to be rescheduled to protect the next client's appointment.</p>
+      <h3>Cancellations</h3>
+      <p>We ask for at least 24 hours' notice to cancel or reschedule. Late cancellations and no-shows may be asked to pre-pay for their next booking.</p>
+      <h3>Pricing</h3>
+      <p>Prices listed are current as of your visit and may vary for specialty requests agreed with your barber in person. Prices are quoted in South African Rand (ZAR) and do not include gratuity.</p>
+      <h3>Calendar integration</h3>
+      <p>When you add a booking to your calendar, an event is generated locally in your browser using the details you provided. We do not access or modify any other events in your calendar.</p>
+      <h3>Privacy</h3>
+      <p>Details you submit through the booking form (name, phone, email, notes) are used only to prepare for and confirm your appointment.</p>
+      <h3>Liability</h3>
+      <p>We take reasonable care with every service. Please tell your barber about any allergies, skin sensitivities, or product concerns before your service begins.</p>
+      <a href="#" data-nav="book" class="btn-outline" style="display:inline-block;margin-top:30px;">Back to booking</a>
+    </div>
+  </section>
+</section>
+
+</main>
+
+<footer>
+    <div class="wrap">
+        <div class="foot-grid">
+            <div>
+                <div class="brand" style="margin-bottom:14px;">
+                    <svg viewBox="0 0 200 140" width="58" height="41">
+                        <rect x="6" y="6" width="188" height="128" rx="8" fill="#efe7da" stroke="#a9813f" stroke-width="1.5"/>
+                        <polygon points="80,24 94,24 100,72" fill="#211f1c"/>
+                        <polygon points="106,24 120,24 100,72" fill="#211f1c"/>
+                        <line x1="106" y1="24" x2="100" y2="72" stroke="#a9813f" stroke-width="1.6"/>
+                        <circle cx="113" cy="29.5" r="2.6" fill="#a9813f"/>
+                        <text x="100" y="98" text-anchor="middle" font-family="Fraunces, serif" font-weight="700" font-size="22" letter-spacing="2" fill="#211f1c">VANTA</text>
+                        <text x="100" y="116" text-anchor="middle" font-family="Inter, sans-serif" font-weight="600" font-size="10" letter-spacing="3" fill="#a9813f">BARBER CO.</text>
+                    </svg>
+                </div>
+                <p>214 Clark Grove, Berea</p>
+                <p>(+27) 72 468 1012 · book@vantabarber.com</p>
+                <div class="social-row">
+                    <a href="#" aria-label="Instagram">IG</a>
+                    <a href="#" aria-label="Facebook">FB</a>
+                </div>
+            </div>
+            <div>
+                <h4>Explore</h4>
+                <a href="#" data-nav="home">Home</a>
+                <a href="#" data-nav="services">Services</a>
+                <a href="#" data-nav="about">About</a>
+            </div>
+            <div>
+                <h4>Client</h4>
+                <a href="#" data-nav="book">Book Now</a>
+                <a href="#" data-nav="terms">Terms & Conditions</a>
+            </div>
+            <div>
+                <h4>Hours</h4>
+                <p>Mon–Fri: 9am–7pm</p>
+                <p>Saturday: 9am–5pm</p>
+                <p>Sunday: Closed</p>
+            </div>
+        </div>
+        <div class="foot-bottom">
+            <span>© 2026 Vanta Barber Co. All rights reserved.</span>
+            <a href="#" data-nav="terms">Terms & Conditions</a>
+        </div>
+    </div>
+</footer>
+
+<!-- POPUP -->
+<div class="overlay" id="promoOverlay">
+  <div class="modal">
+    <button class="modal-close" id="promoClose" aria-label="Close">&times;</button>
+    <h3>First time in the chair?</h3>
+    <p>New clients save 15% on any service when booked through this site. Just mention the code when you arrive.</p>
+    <div class="promo-code">VANTA15</div>
+    <button class="btn-solid" id="promoCta" style="width:100%;border:none;">Book with VANTA15</button>
+  </div>
+</div>
+
+<script>
+(function(){
+  // page nav
+  var pages = document.querySelectorAll('.page');
+  function showPage(id){
+    pages.forEach(function(p){ p.classList.toggle('active', p.id === 'page-'+id); });
+    document.querySelectorAll('nav.main-nav a[data-nav]').forEach(function(a){
+      a.classList.toggle('active', a.dataset.nav === id);
+    });
+    window.scrollTo({top:0,behavior:'instant' in window ? 'instant':'auto'});
+    document.getElementById('mobileNav').classList.remove('open');
+    hambBtn.setAttribute('aria-expanded','false');
+  }
+  document.querySelectorAll('[data-nav]').forEach(function(el){
+    el.addEventListener('click', function(e){
+      e.preventDefault();
+      showPage(this.dataset.nav);
+    });
+  });
+
+  // mobile menu
+  var hambBtn = document.getElementById('hambBtn');
+  var mobileNav = document.getElementById('mobileNav');
+  hambBtn.addEventListener('click', function(){
+    var open = mobileNav.classList.toggle('open');
+    hambBtn.setAttribute('aria-expanded', open ? 'true':'false');
+  });
+
+  // popup
+  var overlay = document.getElementById('promoOverlay');
+  setTimeout(function(){
+    try{
+      if(!sessionStorage.getItem('promoSeen')){ overlay.classList.add('open'); }
+    }catch(e){ overlay.classList.add('open'); }
+  }, 1200);
+  function closePromo(){
+    overlay.classList.remove('open');
+    try{ sessionStorage.setItem('promoSeen','1'); }catch(e){}
+  }
+  document.getElementById('promoClose').addEventListener('click', closePromo);
+  overlay.addEventListener('click', function(e){ if(e.target === overlay) closePromo(); });
+  document.getElementById('promoCta').addEventListener('click', function(){
+    closePromo();
+    showPage('book');
+    var notes = document.getElementById('f-notes');
+    if(notes && !notes.value) notes.value = 'Promo code: VANTA15';
+  });
+
+  // date min = today
+  var dateInput = document.getElementById('f-date');
+  var today = new Date();
+  dateInput.min = today.toISOString().split('T')[0];
+
+  // booking form
+  var form = document.getElementById('bookingForm');
+  function setErr(id,msg){ document.getElementById('err-'+id).textContent = msg || ''; }
+
+  function pad(n){ return n<10 ? '0'+n : ''+n; }
+  function fmtICSDate(d){
+    return d.getFullYear()+pad(d.getMonth()+1)+pad(d.getDate())+'T'+pad(d.getHours())+pad(d.getMinutes())+'00';
+  }
+  function fmtICSDateUTC(d){
+    return d.getUTCFullYear()+pad(d.getUTCMonth()+1)+pad(d.getUTCDate())+'T'+pad(d.getUTCHours())+pad(d.getUTCMinutes())+'00Z';
+  }
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var name = document.getElementById('f-name').value.trim();
+    var phone = document.getElementById('f-phone').value.trim();
+    var email = document.getElementById('f-email').value.trim();
+    var serviceSel = document.getElementById('f-service');
+    var serviceVal = serviceSel.value;
+    var barber = document.getElementById('f-barber').value || 'No preference';
+    var date = document.getElementById('f-date').value;
+    var time = document.getElementById('f-time').value;
+
+    var ok = true;
+    setErr('name',''); setErr('phone',''); setErr('email',''); setErr('service',''); setErr('date',''); setErr('time','');
+    if(!name){ setErr('name','Please enter your name.'); ok=false; }
+    if(!phone){ setErr('phone','Please enter a phone number.'); ok=false; }
+    if(!email || email.indexOf('@')===-1){ setErr('email','Please enter a valid email.'); ok=false; }
+    if(!serviceVal){ setErr('service','Please choose a service.'); ok=false; }
+    if(!date){ setErr('date','Please choose a date.'); ok=false; }
+    if(!time){ setErr('time','Please choose a time.'); ok=false; }
+    if(!ok) return;
+
+    var parts = serviceVal.split('|');
+    var serviceName = parts[0];
+    var price = parts[1];
+    var durMin = parseInt(serviceSel.selectedOptions[0].dataset.dur, 10) || 45;
+
+    var dt = date.split('-'); // YYYY-MM-DD
+    var tm = time.split(':');
+    var start = new Date(parseInt(dt[0]), parseInt(dt[1])-1, parseInt(dt[2]), parseInt(tm[0]), parseInt(tm[1]));
+    var end = new Date(start.getTime() + durMin*60000);
+
+    var whenStr = start.toLocaleDateString(undefined,{weekday:'long',year:'numeric',month:'long',day:'numeric'}) + ' at ' + start.toLocaleTimeString(undefined,{hour:'numeric',minute:'2-digit'});
+
+    document.getElementById('conf-name').textContent = name;
+    document.getElementById('conf-service').textContent = serviceName + ' (' + price + ')';
+    document.getElementById('conf-barber').textContent = barber;
+    document.getElementById('conf-when').textContent = whenStr;
+
+    var title = 'Vanta Barber Co. — ' + serviceName;
+    var desc = 'Appointment for ' + name + ' with ' + barber + '. Service: ' + serviceName + ' (' + price + '). Phone: ' + phone + '.';
+    var loc = '214 Clark Grove, Berea';
+
+    // Google Calendar link
+    var gStart = fmtICSDateUTC(start), gEnd = fmtICSDateUTC(end);
+    var gUrl = 'https://calendar.google.com/calendar/render?action=TEMPLATE&text=' + encodeURIComponent(title) +
+      '&dates=' + gStart + '/' + gEnd +
+      '&details=' + encodeURIComponent(desc) +
+      '&location=' + encodeURIComponent(loc);
+    document.getElementById('googleCalBtn').href = gUrl;
+
+    // ICS file
+    var ics = [
+      'BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Vanta Barber Co.//Booking//EN','CALSCALE:GREGORIAN','METHOD:PUBLISH',
+      'BEGIN:VEVENT',
+      'UID:' + Date.now() + '@vantabarber.com',
+      'DTSTAMP:' + fmtICSDateUTC(new Date()),
+      'DTSTART:' + fmtICSDate(start),
+      'DTEND:' + fmtICSDate(end),
+      'SUMMARY:' + title,
+      'DESCRIPTION:' + desc,
+      'LOCATION:' + loc,
+      'END:VEVENT','END:VCALENDAR'
+    ].join('\r\n');
+    var blob = new Blob([ics], {type:'text/calendar;charset=utf-8'});
+    var icsUrl = URL.createObjectURL(blob);
+    var icsBtn = document.getElementById('icsBtn');
+    icsBtn.href = icsUrl;
+
+    document.getElementById('confirmPanel').style.display = 'block';
+    document.getElementById('confirmPanel').scrollIntoView({behavior:'smooth', block:'start'});
+    form.reset();
+    dateInput.min = today.toISOString().split('T')[0];
+  });
+})();
+</script>
+</body>
+</html>
